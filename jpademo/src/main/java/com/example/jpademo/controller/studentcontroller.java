@@ -3,6 +3,7 @@ package com.example.jpademo.controller;
 import com.example.jpademo.model.student;
 import com.example.jpademo.service.studentservice;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,6 +41,17 @@ public class studentcontroller {
     public String clearstud(){
         studentservice.clearstud();
         return "cleared";
+    }
+    @GetMapping("/students/technology/{tech}")
+    public List<student>getstudbytechnology(@PathVariable String tech){
+        return studentservice.getstudbytech(tech);
+    }
+
+    @PostMapping("/students/filter")
+    public List<student>getstudentbygenderandtechnology(@Param("gender") String gender,
+                                                        @Param("technology") String technology){
+
+        return studentservice.getstudbygenderandtech(gender,technology);
     }
 
 }

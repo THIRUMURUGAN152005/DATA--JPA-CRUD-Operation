@@ -39,4 +39,13 @@ public class studentservice {
     public void clearstud() {
         studentrepo.deleteAll();
     }
+
+    public List<student> getstudbytech(String tech) {
+        return studentrepo.findBytechnology(tech);
+    }
+
+    public List<student> getstudbygenderandtech(String gender, String technology) {
+
+        return studentrepo.findBygenderAndtechnology(gender,technology);
+    }
 }
